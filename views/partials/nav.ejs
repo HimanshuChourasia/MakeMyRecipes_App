@@ -1,0 +1,53 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" href="/assets/stylesheets/nav.css">
+<script>
+
+    $(document).ready(function() {
+
+        // Get current page URL
+        var url = window.location.href;
+
+        // remove # from URL
+        url = url.substring(0, (url.indexOf("#") == -1) ? url.length : url.indexOf("#"));
+
+        // remove parameters from URL
+        url = url.substring(0, (url.indexOf("?") == -1) ? url.length : url.indexOf("?"));
+
+        // select file name
+        url = url.substr(url.lastIndexOf("/"));
+
+
+
+        // Loop all menu items
+        $('#nav_form button').each(function(){
+
+            // select href
+            var href = $(this).attr('formaction');
+
+            // Check filename
+            if(url === href ){
+
+
+                    // Add active class
+                    $("a.active")[0].classList.remove("current");
+                    $(this).addClass('current');
+                }
+
+        });
+    });
+</script>
+
+<nav>
+    <form id ="nav_form">
+        <button type="submit" class="nav_list_li nav_content" formaction="/profile/signin">
+            Sign In
+        </button>
+        <button type="submit"  class="nav_list_li nav_content" formaction="/myitems">
+            My Recipes
+        </button>
+        <button type="submit"  class="nav_list_li nav_content disabled" formaction="#">
+            Cart
+        </button>
+    </form>
+</nav>
+

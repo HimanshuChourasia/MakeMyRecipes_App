@@ -1,0 +1,617 @@
+* {
+    box-sizing: border-box;
+}
+aside, article, header, footer, main, nav, section {
+    display: block;
+}
+
+html, body, h1, h2, h4, header, footer, nav, aside, article, section, main, p, a, ul, li {
+    padding: 0;
+    margin: 0;
+}
+
+
+body {
+    font-size: 87.5%;
+    font-family: sans-serif;
+    line-height: 1.5;
+    text-align: left;
+}
+.container {
+    position: relative;
+}
+.body_wrapper {
+    margin-bottom: 1%;
+    position: relative;
+}
+
+.main_container {
+    margin-left: 15%;
+    padding: 1px 16px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+}
+
+.heading_style {
+    font-family: 'Rochester', cursive;
+    color: #203658;
+    font-size: 80px;
+    margin-bottom: 2%;
+}
+
+.title_section {
+    margin-bottom: 2%;
+    font-size: 1.875em;
+}
+
+section {
+    margin-top: 5px;
+    padding: 5px;
+}
+
+.post_info {
+    font-style: oblique;
+    margin-bottom: 2%;
+}
+
+article {
+    background-color: white;
+    font-family: Staatliches;
+    margin-top: 5px;
+    padding: 15px 10px;
+}
+
+.article_content {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.12vw;
+}
+
+h2.article_content {
+    font-size: 1.60vw;
+}
+
+.main_container_wrapper {
+    max-width: 100%;
+    max-height: 50%;
+    overflow: auto;
+}
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    width: 230px;
+    height: auto;
+    float: left;
+    margin: 10px;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.card_container {
+    padding: 2px 16px;
+}
+
+.card img {
+    transition: 0.3s;
+    height: 100%;
+    width: 100%;
+}
+
+.card img:hover {
+    padding: 10px;
+    cursor: pointer;
+}
+.category_food {
+    text-align: center;
+    clear: both;
+}
+
+.items_link {
+    text-decoration: none;
+}
+
+.category {
+    margin-bottom: 10px;
+    clear: both;
+}
+
+.container_img_button {
+    overflow: auto;
+}
+
+.container_img_button img {
+    transition: 0.3s;
+    height: 15%;
+    width: 19%;
+    float: left;
+}
+
+.item_title {
+    margin-bottom: 1%;
+}
+
+.div_heading {
+    float: left;
+    margin-left: 2%;
+    margin-bottom: 8%;
+}
+
+.div_button {
+    clear: left;
+}
+
+.div_item_intro {
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+.div_directions {
+    margin-bottom: 1%;
+}
+
+
+.table_class {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.table_class td, .table_class th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+
+.table_class tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.table_class .width {
+   border: 0;
+}
+.table_class tr:hover {
+    background-color: #ddd;
+}
+
+.table_class th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #207f8a;
+    color: white;
+}
+
+.table_class td.hide, .table_class th.hide {
+    visibility: hidden;
+    border: 0;
+}
+
+.table_class td.border_hide {
+    border: 0;
+    background-color: white;
+    text-align: center;
+}
+
+.table_class td a{
+    text-decoration: none;
+    color: black;
+}
+
+.icon_chef {
+    height: 24px;
+    width: 24px;
+}
+
+.width {
+    width: 4%;
+    white-space: nowrap;
+    padding: 1px 8px;
+    border: hidden transparent;
+    background-color: white;
+}
+
+.checkbox {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+.container_chk_myitems {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+}
+
+
+.container_chk {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    margin-top: 24%;
+}
+
+.container_chk  input  {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.container_chk_myitems  input  {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+}
+
+.container:hover input~.checkmark {
+    background-color: #ccc;
+}
+
+.container input:checked~.checkmark {
+    background-color: #2196F3;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.container input:checked~.checkmark:after {
+    display: block;
+}
+
+.container .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.button_items {
+    background-color: #2d91b6;
+    opacity: 0.7;
+    border: none;
+    color: white;
+    padding: 13px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 13px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 12px;
+}
+
+.button_items a {
+    text-decoration: none;
+    color: white;
+}
+
+.button_items:hover {
+    opacity: 1;
+    background-color: #0a1f55;
+}
+
+.pos {
+    width: 2%;
+    float: left;
+}
+
+.bottom_div_myitems {
+    margin-top: 12%;
+}
+
+#save_it_pos{
+    float: left;
+}
+
+.nav_link {
+    padding: 7px 12px;
+    text-align: center;
+    color: white;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 12px;
+    margin-bottom: 1%;
+    background-color: #4d1147;
+}
+
+.nav_link:hover {
+    background-color: #080708;
+}
+
+.fa-star {
+
+}
+
+.checked {
+    color: orange;
+}
+
+.fa:hover {
+    opacity: 1;
+}
+
+.item_button {
+    background-color: #331233;
+    border: none;
+    color: white;
+    padding: 2px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.item_button:hover {
+    background-color: #794d7c;
+    color: white;
+}
+
+.images_aside{
+    max-height: 110px;
+    max-width: 110px;
+
+}
+#about_us_img{
+    max-width: 60%;
+}
+.aboutus_img img{
+    max-width: 100%;
+    overflow: auto;
+}
+.about_us_heading{
+    text-align: center;
+}
+.aside_container{
+    max-width: 100%;
+    max-height: 50%;
+    overflow: auto;
+}
+
+.aside_article{
+    margin-bottom: 2%;
+}
+
+.AboutUs_Details{
+    margin-bottom: 1%;
+
+}
+.person {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    float: left;
+    width: 230px;
+    height: auto;
+    margin: 10px;
+}
+
+.person:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.person_container {
+    padding: 2px 16px;
+    margin-bottom: 19%;
+}
+
+
+
+.person img {
+    transition: 0.3s;
+    height: 100%;
+    width: 100%;
+}
+
+.person img:hover {
+    cursor: pointer;
+}
+.person_wrapper{
+    clear: both;
+    margin-bottom: 10px;
+}
+
+input[type=text], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
+}
+
+input[type=submit] {
+    background-color: #331233;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: black;
+}
+
+/* Style the container/contact section */
+.form_container {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 10px;
+}
+
+/* Create two columns that float next to eachother */
+.column {
+    float: left;
+    width: 50%;
+    margin-top: 6px;
+    padding: 20px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+    .column, input[type=submit] {
+        width: 100%;
+        margin-top: 0;
+    }
+}
+
+.styled-select {
+    background: url(http://i62.tinypic.com/15xvbd5.png) no-repeat 96% 0;
+    height: 29px;
+    overflow: hidden;
+    width: 240px;
+}
+
+.styled-select select {
+    background: transparent;
+    border: none;
+    font-size: 14px;
+    height: 29px;
+    padding: 5px; /* If you add too much padding here, the options won't show in IE */
+    width: 268px;
+}
+
+.styled-select.slate {
+    background: url(http://i62.tinypic.com/2e3ybe1.jpg) no-repeat right center;
+    height: 34px;
+    width: 240px;
+}
+.styled-select.slate#Rating,.styled-select.slate.C_Rating,.styled-select.slate.C_MadeIt{
+    display: inline-block;
+    min-width: 48.8%;
+}
+
+.styled-select.slate select {
+    border: 1px solid #ccc;
+    font-size: 16px;
+    height: 34px;
+    width: 268px;
+}
+
+.item_button_div{
+    clear: left;
+}
+#back_to_categories,#updateItem{
+    float: left;
+
+}
+.C_Rating {
+    float: left;
+    display: inline-block;
+    padding: 10px 10px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #331233;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+    margin-bottom: 5%;
+    margin-top: 5%;
+    margin-right: 28px;
+}
+
+.C_Rating:hover {background-color: black}
+
+.C_Rating:active {
+    background-color: #331233;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+.C_MadeIt {
+    display: inline-block;
+    padding: 10px 10px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #331233;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+    margin-bottom: 5%;
+    margin-top: 18%;
+}
+
+.C_MadeIt:hover {background-color: black}
+
+.C_MadeIt:active {
+    background-color: #331233;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+#Rating_form {
+    float: left;
+    margin-right: 28%;
+}
+
+#madeItform{
+    float: left;
+}
+
+.item_code_not_found{
+    margin-bottom: 1%;
+}
+
+.index_content_image{
+    height: auto;
+    width: 100%;
+}
+
+.warning{
+    text-align: center;
+    color: red;
+}

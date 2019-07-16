@@ -1,0 +1,108 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <title>Registration</title>
+    <link href="/assets/stylesheets/register.css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="/assets/stylesheets/error.css" />
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="//geodata.solutions/includes/countrystatecity.js"></script>
+    <script>
+        function checkPasswordMatch() {
+            var password = $("#txtNewPassword").val();
+            var confirmPassword = $("#txtConfirmPassword").val();
+
+            if (password != confirmPassword) {
+                txtConfirmPassword.setCustomValidity("Passwords Don't Match");
+            } else {
+                txtConfirmPassword.setCustomValidity('');
+            }
+            txtNewPassword.onchange = validatePassword;
+            txtConfirmPassword.onkeyup = validatePassword;
+
+        }
+
+
+    </script>
+</head>
+
+
+<body>
+<div class="container">
+    <% include partials/header.ejs%>
+    <div class="body_wrapper">
+        <% include partials/nav.ejs%>
+        <% include partials/site-navigation.ejs%>
+        <div class="main_container">
+            <%if(errorlist!== undefined){ %>
+            <h2 class="warning">One of the fields have a validation issue .Please refer to the table below</h2>
+                <div class="error_container" style="margin-left: 19%">
+                    <table id="errortable">
+                        <tr>
+                            <th>Location</th>
+                            <th>Parameter</th>
+                            <th>Parameter Value</th>
+                            <th>Error Message</th>
+                            <th>Nested Errors</th>
+                        </tr>
+                        <% for (var i = 0; i < errorlist.length ; i++) { %>
+                        <tr>
+                            <td><%=errorlist[i].location%></td>
+                            <td><%=errorlist[i].param%></td>
+                            <td><%=errorlist[i].value%></td>
+                            <td><%=errorlist[i].msg%></td>
+                            <td><%=errorlist[i].nestedErrors%></td>
+                        </tr>
+                        <% } %>
+                    </table>
+                </div>
+            <%}%>
+                <%if(onSuccessFlag === false){ %>
+            <div id="login-box">
+                <div class="left">
+                    <h1 class="signup_heading">Sign up</h1>
+                    <form method="post" action="/profile/accountCreated">
+                        <input type="text" name="fname" placeholder="FirstName" required/>
+                        <input type="text" name="lname" placeholder="LastName" required />
+                        <input type="text" name="address_1" placeholder="Address" required/>
+                        <input type="text" name="address_2" placeholder="Address (Optional)" />
+                        <label for="countryId"></label>
+                            <select name="country" class="countries select_style" id="countryId" required>
+                            <option value="">Select Country</option>
+                        </select>
+                        <label for="stateId"></label>
+                        <select name="state" class="states select_style" id="stateId" required>
+                            <option value="">Select State</option>
+                        </select>
+                        <label for="cityId"></label>
+                        <select name="city" class="cities select_style" id="cityId" required>
+                            <option value="">Select City</option>
+                        </select>
+                        <input type="text" name="email" placeholder="E-mail" required />
+                        <input type="text" name="zipcode" placeholder="Zipcode" required />
+                        <input type="password" name="password" placeholder="Password" id="txtNewPassword" required/>
+                        <input type="password" name="password2" placeholder="Retype password" id="txtConfirmPassword" required onChange="checkPasswordMatch();"/>
+                        <input type="submit" name="signup_submit" value="Sign me up" />
+                    </form>
+                </div>
+
+                <div class="right">
+                    <span class="loginwith">Sign in with<br />social network</span>
+
+                    <button class="social-signin facebook">Log in with facebook</button>
+                    <button class="social-signin twitter">Log in with Twitter</button>
+                    <button class="social-signin google">Log in with Google+</button>
+                </div>
+                <div class="or">OR</div>
+            </div>
+            <%}else {%>
+            <h2 class ="account_created">Successfully created account </h2><br>
+            <h3 class ="account_created">You can login with the username :<%=username%></h3><br>
+            <p class ="account_created space_bottom">You can login from <a href="/profile/signin">here</a></p>
+            <%}%>
+        </div>
+        <% include partials/footer.ejs%>
+</div>
+</div>
+
+</body>
+</html>

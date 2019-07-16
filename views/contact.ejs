@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" type="image/png" href="assets/images/favicon.png" />
+    <title>MakeYourRecipes-ContactUs</title>
+    <link href="https://fonts.googleapis.com/css?family=Rochester" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/stylesheets/style.css">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--[if lt IE  9]>
+    <script type="text/javascript">
+        document.createElement("article");
+        document.createElement("aside");
+        document.createElement("header");
+        document.createElement("footer");
+        document.createElement("main");
+        document.createElement("nav");
+        document.createElement("section");
+    </script>
+    <![endif]-->
+</head>
+<body>
+<div class="container">
+    <% include partials/header.ejs%>
+    <div class="body_wrapper">
+        <% include partials/nav.ejs%>
+        <% include partials/site-navigation.ejs%>
+        <div class="main_container">
+                <div class="form_container">
+                    <div style="text-align:center">
+                        <h2>Contact Us</h2>
+                        <p>For more recipes, leave us a message:</p>
+                    </div>
+                    <div class="row">
+                        <div class="column">
+                            <img src="assets/images/contact_us.jpg" style="width:100%" alt="ContactUS">
+                        </div>
+                        <div class="column">
+                            <form action="/index">
+                                <label for="fname">First Name</label>
+                                <input type="text" id="fname" name="firstname" placeholder="Your name.." required>
+                                <label for="lname">Last Name</label>
+                                <input type="text" id="lname" name="lastname" placeholder="Your last name.." required>
+                                <label for="country">Country</label>
+                                <select id="country" name="country" required>
+                                    <option hidden disabled selected value> -- select an option -- </option>
+                                    <option value="australia">Australia</option>
+                                    <option value="canada">Canada</option>
+                                    <option value="usa">USA</option>
+                                </select>
+                                <label for="subject">Subject</label>
+                                <textarea id="subject" name="subject" placeholder="Write something.." style="height:170px"></textarea>
+                                <input type="submit" value="Submit">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+</div>
+</div>
+<% include partials/footer.ejs%>
+
+</body>
+</html>
+
+
+
+

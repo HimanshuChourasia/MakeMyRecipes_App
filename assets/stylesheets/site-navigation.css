@@ -1,0 +1,33 @@
+* {
+    box-sizing: border-box;
+}
+
+
+html, body, h1, h2, h4, header, footer, nav, aside, article, section, main, p, a, ul, li {
+    padding: 0;
+    margin: 0;
+}
+
+
+.sidebar {
+    position: absolute;
+    width: 12%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+}
+
+.sidebar a {
+    display: block;
+    color: black;
+    padding: 9%;
+    text-decoration: none;
+}
+
+.active {
+    background-color: #386b95;
+}
+
+.article_content {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.12vw;
+}

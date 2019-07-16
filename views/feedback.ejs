@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" type="image/png" href="/assets/images/favicon.png"/>
+    <title>MakeYourRecipes-feedback</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Rochester" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/stylesheets/style.css">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--[if lt IE  9]>
+    <script type="text/javascript">
+        document.createElement("article");
+        document.createElement("aside");
+        document.createElement("header");
+        document.createElement("footer");
+        document.createElement("main");
+        document.createElement("nav");
+        document.createElement("section");
+
+    </script>
+    <![endif]-->
+</head>
+<body>
+<div class="container">
+    <% include partials/header.ejs %>
+    <div class="body_wrapper">
+        <% include partials/nav.ejs %>
+        <% include partials/site-navigation.ejs %>
+        <div class="main_container">
+            <div class="nav_div">
+                <p><a href="/index" class="nav_link">Home</a> &raquo; <a href="/categories" class="nav_link">Categories</a> &raquo; <a href="<%='/item?Item_Code='+Item[0].Item_Code%>" class="nav_link">Item</a></p>
+            </div>
+            <h2>Give your feedback for</h2>
+            <div class="container_img_button">
+                <img src="<%=Item[0].ImageUrl %>" alt="Food">
+                <div class="div_heading">
+                    <h2 class="item_title"><%=Item[0].Item_Name%></h2>
+                    <h4 class="item_title"><%= Item[0].Catalog_Category %></h4>
+                    <p><%= Item[0].Description %></p>
+
+                    <form method="post" id="Rating_form">
+                        <label for="Rating">Rating:</label>
+                        <select id="Rating" name="rating">
+                            <option hidden disabled selected value="-1"> -- select an option --</option>
+                            <option value="1">1 Star &#9733;</option>
+                            <option value="2">2 Star &#9733;&#9733;</option>
+                            <option value="3">3 Star &#9733;&#9733;&#9733;</option>
+                            <option value="4">4 Star &#9733;&#9733;&#9733;&#9733;</option>
+                            <option value="5">5 Star &#9733;&#9733;&#9733;&#9733;&#9733;</option>
+                        </select>
+                        <input type="hidden" name="itemcode" value="<%= Item[0].Item_Code %>">
+                        <input type="hidden" name="category" value="<%= Item[0].Catalog_Category %>">
+                        <input type="hidden" name="itemName" value="<%=Item[0].Item_Name%>">
+                        <% for(let J = 0 ; J< Item.length ; J++) { %>
+                        <input type="hidden" name = "itemlist" value="<%=Item[J].Item_Code%>">
+                        <%}%>
+                        <button class="C_Rating" type="submit" formmethod="post" formaction="/profile/updateRatingItem">Confirm Rating</button>
+                    </form>
+                    <form method="post" id="madeItform">
+                        <label class="container_chk">I made it !!
+                            <input type="checkbox" checked="checked" name="madeit"  >
+                            <span class="checkmark"></span>
+                        </label>
+                        <input type="hidden" name="itemcode" value="<%= Item[0].Item_Code %>">
+                        <input type="hidden" name="category" value="<%= Item[0].Catalog_Category %>">
+                        <input type="hidden" name="itemName" value="<%=Item[0].Item_Name%>">
+                        <% for(let J = 0 ; J< Item.length ; J++) { %>
+                        <input type="hidden" name = "itemlist" value="<%=Item[J].Item_Code%>">
+                        <%}%>
+                        <button class="C_MadeIt" type="submit" formmethod="post" formaction="/profile/updateMadeItItem">Confirm MadeIt</button>
+                    </form>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<% include partials/footer.ejs %>
+
+</body>
+</html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" type="image/png" href="/assets/images/favicon.png" />
+    <title>MakeYourRecipes-MyItems</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Rochester" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/stylesheets/style.css">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--[if lt IE  9]>
+    <script type="text/javascript">
+        document.createElement("article");
+        document.createElement("aside");
+        document.createElement("header");
+        document.createElement("footer");
+        document.createElement("main");
+        document.createElement("nav");
+        document.createElement("section");
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    $('.table_class td:nth-child(even).width').css("background-color", "white");
+    </script>
+    <![endif]-->
+</head>
+<body>
+<div class="container">
+    <% include partials/header.ejs %>
+    <div class="body_wrapper">
+        <%include partials/nav.ejs%>
+<%include partials/site-navigation.ejs%>
+        <div class="main_container">
+            <% if (user === undefined){%>
+            <div class="div_heading">
+                    <h2>Admin's Recipes</h2>
+            </div>
+            <div class="div_table">
+
+                <table class="table_class">
+                    <tr>
+                        <th class="hide">Icon</th>
+                        <th>Recipe</th>
+                        <th>Category</th>
+                        <th>My Rating</th>
+                        <th>Made It</th>
+                        <th class="hide">Button1</th>
+                        <th class="hide">Button2</th>
+                    </tr>
+                    <% for(let i =0 ;i<list.length;i++){ %>
+                        <tr>
+
+
+
+                                <td class="hide">Icon</td>
+
+                            <td><a href="<%='/item?Item_Code='+list[i].Item_Code%>"><%=list[i].Item_Name%></a></td>
+                            <td><a href="<%='/categories?catalog_category='+list[i].Catalog_Category%>"><%=list[i].Catalog_Category%></a></td>
+                            <td><%for(let j =0 ;j< list[i].Rating; j++){%>
+                                    <span class="fa fa-star checked"></span>
+                                <% } %>
+                                <!--<span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span></td>-->
+
+                            <td>
+                                <label class="container_chk_myitems">
+
+                                        <input type="checkbox" checked="checked" class="checkbox">
+                                        <span class="checkmark"></span>
+
+                                </label>
+
+                            </td>
+
+                            <td class="border_hide">
+                                <form >
+                                    <button type="submit" name="Item_Code"  value="<%=list[i].Item_Code%>" class="button_items" formaction="/item">UPDATE</button></form>
+                            </td>
+                            <td class="border_hide">
+                                <form>
+
+                                    <button type="submit" name="button" value="<%=list[i].Item_Code%>" class="button_items" formaction="/myitems">DELETE</button></form>
+                            </td>
+                        </tr>
+                    <% } %>
+
+                </table>
+            </div>
+                <% }else{%>
+                <div class="div_heading">
+                <h2><%=user.firstName +' '+user.lastName + ' Recipe\'s'%></h2>
+                    <% if  (itempresent){%>
+                    <h2 class="warning">Item already present</h2>
+                    <%}%>
+            </div>
+            <div class="div_table">
+                <table class="table_class">
+                    <tr>
+                        <th class="hide">Icon</th>
+                        <th>Recipe</th>
+                        <th>Category</th>
+                        <th>My Rating</th>
+                        <th>Made It</th>
+                        <th class="hide">Button1</th>
+                        <th class="hide">Button2</th>
+                    </tr>
+                    <% for(let i =0 ;i < userlist.length;i++){ %>
+                    <tr>
+                        <% if(userlist[i].MadeIt === true){%>
+                        <td class="width"><img src="/assets/images/chef_icon.png" alt="chef" class="icon_chef"></td>
+                        <% } else { %>
+                        <td class="hide">Icon</td>
+                            <% } %>
+                        <td><a href="<%='/item?Item_Code='+userlist[i].Item_Code %>"><%=userlist[i].Item_Name %></a></td>
+                        <td><a href="<%='/categories?catalog_category='+userlist[i].Catalog_Category%>"><%=userlist[i].Catalog_Category %></a></td>
+                        <td><%for(let j =0 ;j< userlist[i].Rating; j++){%>
+                            <span class="fa fa-star checked"></span>
+                            <% } %>
+
+                        <td>
+                            <label class="container_chk_myitems">
+                                <% if(userlist[i].MadeIt === true){%>
+                                <input type="checkbox" checked="checked" class="checkbox">
+                                <span class="checkmark"></span>
+                                    <% } %>
+                            </label>
+
+                        </td>
+
+                        <td class="border_hide">
+
+                            <form method="post">
+                                <% for(let k = 0 ; k< userlist.length ; k++) { %>
+                                <input type="hidden" name = "itemlist" value="<%=userlist[k].Item_Code%>">
+                                <%}%>
+                                <button type="submit" name="itemcode"  value="<%=userlist[i].Item_Code%>" class="button_items" formaction="/profile/itemfeedback">UPDATE</button></form>
+                        </td>
+                        <td class="border_hide">
+                            <form method="post">
+                                <% for(let J = 0 ; J< userlist.length ; J++) { %>
+                                <input type="hidden" name = "itemlist" value="<%=userlist[J].Item_Code%>">
+                                <%}%>
+                                <button type="submit" name="itemcode" value="<%=userlist[i].Item_Code%>" class="button_items" formaction="/profile/deleteItem">DELETE</button></form>
+                        </td>
+                    </tr>
+                    <% } %>
+
+                </table>
+            </div>
+            <%}%>
+            <div class="bottom_div_myitems">
+                <img src="/assets/images/chef_icon.png" alt="chef" class="icon_chef pos">
+                <p>&nbsp;indicates recipe belongs to you.<br>
+                    Click <a href="/profile/share" >here</a>&nbsp;to share a new recipe!</p>
+            </div>
+        </div>
+    </div>
+</div>
+<% include partials/footer.ejs%>
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/assets/stylesheets/header.css">
+<div class="header_wrapper">
+    <div class="banner">
+        <div class="title_container">
+            <!-- <a id="titular">Make Your Recipes</a> -->
+            <img src="/assets/images/Banner.jpg" alt="Banner" id="my_banner_img">
+            <div class="logo_container">
+                <img src="/assets/images/logos.png" alt="Logo">
+            </div>
+            <div class="not_signed_in">
+                <% if(user === undefined){ %>
+                <p>Not Signed In</p>
+                <% }else{%>
+                    <p><%=user.firstName +' '+user.lastName %></p>
+                <% } %>
+            </div>
+            <div class="social_nav">
+                <ul id="menu" title="Menu">
+                    <li class="fa fa-twitter socm">
+                        <a href="https://twitter.com" target="_blank">
+                        </a>
+                    </li>
+                    <li class="fa fa-facebook socm">
+                        <a href="https://www.facebook.com" target="_blank">
+                        </a>
+                    </li>
+                    <li class="fa fa-instagram socm">
+                        <a href="https://www.instagram.com" target="_blank">
+                        </a>
+                    </li>
+                    <li class="fa fa-pinterest socm">
+                        <a href="https://www.pinterest.com" target="_blank">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

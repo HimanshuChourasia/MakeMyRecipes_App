@@ -1,0 +1,43 @@
+* {
+    box-sizing: border-box;
+}
+ footer{
+    display: block;
+}
+
+html, body, h1, h2, h4, header, footer, nav, aside, article, section, main, p, a, ul, li {
+    padding: 0;
+    margin: 0;
+}
+
+
+.footer_main {
+    position: relative;
+    padding: 15px;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #050116;
+    color: white;
+    text-align: center;
+}
+
+.footer_wrapper ul {
+    display: inline;
+    width: 100%;
+}
+
+.footer_list {
+    list-style-type: none;
+}
+
+.footer_list li {
+    display: inline;
+    text-decoration: none;
+    padding: 2px 5px;
+}
+
+.footer_list li a {
+    text-decoration: none;
+    color: #c6c411;
+}

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" type="image/png" href="/assets/images/favicon.png" />
+    <title>MakeYourRecipes-Sign In</title>
+    <link href="https://fonts.googleapis.com/css?family=Rochester" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/stylesheets/signin.css">
+    <link rel="stylesheet" href="/assets/stylesheets/style.css">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--[if lt IE  9]>
+    <script type="text/javascript">
+        document.createElement("article");
+        document.createElement("aside");
+        document.createElement("header");
+        document.createElement("footer");
+        document.createElement("main");
+        document.createElement("nav");
+        document.createElement("section");
+    </script>
+    <![endif]-->
+</head>
+<body>
+<div class="container">
+    <% include partials/header.ejs%>
+    <div class="body_wrapper">
+        <% include partials/nav.ejs%>
+        <% include partials/site-navigation.ejs%>
+        <div class="main_container">
+            <h2 class="heading_style">Welcome to MakeYourRecipes.com</h2>
+            <% if (flag){ %>
+                <h3 class = "warning">UserName or Password Entered is incorrect</h3>
+            <% }%>
+            <% if (errorlist != undefined) {
+            for (var i = 0; i < errorlist.length ; i++) { %>
+            <h3 class = "warning"><%=errorlist[i].msg%></h3>
+            <%}}%>
+            <% if (sessionFailure){ %>
+                <h3 class = "warning">Unable to load session </h3>
+            <% }%>
+
+            <form id = "login" method="post" action="/profile/userprofile">
+                <div class="profileimage">
+                    <img class="avatar" src="/assets/images/avatar.png" alt="Avatar" >
+                </div>
+
+                <div class="login_container">
+                    <label><b>Username</b></label>
+                    <input type="text" placeholder="Enter Username" name="uname" required>
+
+                    <label><b>Password</b></label>
+                    <input type="password" placeholder="Enter Password" name="psw" required>
+
+                    <button type="submit">Login</button>
+                    <label>
+                        <input type="checkbox" checked="checked" name="remember"> Remember me
+                    </label>
+                </div>
+            </form>
+            <div class="login_container">
+                <p >Not a Member become a Member Now !!! <a href="/profile/register">SignUp Here</a>
+                <span class="psw">Forgot <a href="#">password?</a></span>
+                </p>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+<% include partials/footer.ejs%>
+
+</body>
+</html>

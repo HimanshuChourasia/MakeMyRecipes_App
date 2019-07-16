@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title>MakeYourRecipes-Categories</title>
+    <link rel="shortcut icon" type="image/png" href="/assets/images/favicon.png" />
+    <link href="https://fonts.googleapis.com/css?family=Rochester" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/stylesheets/style.css">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+    <!--[if lt IE  9]>
+    <script type="text/javascript">
+        document.createElement("article");
+        document.createElement("aside");
+        document.createElement("header");
+        document.createElement("footer");
+        document.createElement("main");
+        document.createElement("nav");
+        document.createElement("section");
+    </script>
+    <![endif]-->
+</head>
+
+<body>
+
+<div class="container">
+    <% include partials/header.ejs%>
+    <div class="body_wrapper">
+        <% include partials/nav.ejs%>
+        <% include partials/site-navigation.ejs%>
+        <div class="main_container">
+            <% if (category_not_present){ %>
+                <h2 class="warning">Category Selected Not Present.Kindly select Categories & items from these categories</h2>
+                <% } %>
+            <div class="main_container_wrapper">
+                <% if (item_not_present){%>
+                    <h2 class="warning">Item Selected Not Present.Kindly select items from these categories</h2>
+                    <%}%>
+                <% if(category === 'ALL' || category === undefined) { %>
+                   <% for(let i=0 ;i< cat.length ; i++) { %>
+                <h2 class="category_food article_content"> <%= cat[i] %></h2>
+
+                <div class="category">
+                    <% for (let j = 0; j < item.length ; j++) { %>
+                    <% if (item[j].Catalog_Category === cat[i]) { %>
+                     <div class="card">
+                        <a href="<%='/item?Item_Code='+item[j].Item_Code%>" class="items_link"><img src="<%= item[j].ImageUrl %>" alt="category_food" />
+                            <div class="card_container">
+                                <h4 class="article_content"><b><%=item[j].Item_Name %></b></h4>
+                                <p class="article_content"><%=item[j].Item_Name %></p>
+                            </div>
+                        </a>
+                    </div>
+                        <% }}%>
+
+                    </div>
+                        <%}%>
+                    <% }  else if (specific_category){ %>
+                        <h2 class="category_food article_content"> <%= category %></h2>
+
+                        <div class="category">
+                            <% item.forEach(function (value) {  %>
+                            <div class="card">
+                                <a href="<%='/item?Item_Code='+value.Item_Code%>" class="items_link"><img src="<%= value.ImageUrl %>" alt="category_food" />
+                                    <div class="card_container">
+                                        <h4 class="article_content"><b><%=value.Item_Name %></b></h4>
+                                        <p class="article_content"><%=value.Item_Name %></p>
+                                    </div>
+                                </a>
+                            </div>
+                            <% }); %>
+                        </div>
+                        <% } else { %>
+                        <% for(let i=0 ;i< cat.length ; i++) { %>
+                            <h2 class="category_food article_content"> <%= cat[i] %></h2>
+
+                            <div class="category">
+                                <% item.forEach(function (value) {  %>
+                                <div class="card">
+                                    <a href="<%='/item?Item_Code='+value.Item_Code%>" class="items_link"><img src="<%= value.ImageUrl %>" alt="category_food" />
+                                        <div class="card_container">
+                                            <h4 class="article_content"><b><%=value.Item_Name %></b></h4>
+                                            <p class="article_content"><%=value.Item_Name %></p>
+                                        </div>
+                                    </a>
+                                </div>
+                                <% }); %>
+                            </div>
+                    <% } }%>
+
+
+                <!--
+                <div class="card">
+                    <a href="/item" class="items_link"><img src="assets/images/recpies_2.jpg" alt="category_food" />
+                        <div class="card_container">
+                            <h4 class="article_content"><b>Vegetable Appetizer</b></h4>
+                            <p class="article_content">Vegetable Appetizer</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="card">
+                    <a href="/item" class="items_link"><img src="assets/images/recpies_3.jpg" alt="category_food" class="card_img" />
+                        <div class="card_container">
+                            <h4 class="article_content"><b>Rice Broth</b></h4>
+                            <p class="article_content">Rice Broth</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="card">
+                    <a href="/item" class="items_link"><img src="assets/images/recpies_4.jpg" alt="category_food" class="card_img" />
+                        <div class="card_container">
+                            <h4 class="article_content"><b>Fish Appetizer</b></h4>
+                            <p class="article_content">Fish Appetizer</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <h2 class="category_food article_content"> Main Course</h2>
+            <div class="category">
+                <div class="card">
+                    <a href="/item" class="items_link"><img src="assets/images/main_course_1.jpg" alt="category_food" class="card_img" />
+                        <div class="card_container">
+                            <h4 class="article_content"><b>Korean Curry</b></h4>
+                            <p class="article_content">Korean Curry</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="card">
+                    <a href="/item" class="items_link"><img src="assets/images/main_course_2.jpg" alt="category_food" class="card_img" />
+                        <div class="card_container">
+                            <h4 class="article_content"><b>Exotic Prawns</b></h4>
+                            <p class="article_content">Exotic Prawns</p>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="card">
+                    <a href="/item" class="items_link"><img src="assets/images/main_course_3.jpg" alt="category_food" class="card_img" />
+                        <div class="card_container">
+                            <h4 class="article_content"><b>Chicken tikka</b></h4>
+                            <p class="article_content">Chicken tikka</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="card">
+                    <a href="/item" class="items_link"><img src="assets/images/main_course_4.jpg" alt="category_food" class="card_img" />
+                        <div class="card_container">
+                            <h4 class="article_content"><b>Italian Fettucine</b></h4>
+                            <p class="article_content">Italian Fettucine</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="card">
+                    <a href="/item" class="items_link"><img src="assets/images/main_course_5.jpg" alt="category_food" class="card_img" />
+                        <div class="card_container">
+                            <h4 class="article_content"><b>White Pasta</b></h4>
+                            <p class="article_content">White Pasta</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="card">
+                    <a href="/item" class="items_link"><img src="assets/images/main_course_6.jpg" alt="category_food" class="card_img" />
+                        <div class="card_container">
+                            <h4 class="article_content"><b>Kjaras</b></h4>
+                            <p class="article_content">Kjaras</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="card">
+                    <a href="/item" class="items_link"><img src="assets/images/main_course_7.jpg" alt="category_food" class="card_img" />
+                        <div class="card_container">
+                            <h4 class="article_content"><b>Chicken Broth</b></h4>
+                            <p class="article_content">Chicken Broth</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="card">
+                    <a href="/item" class="items_link"><img src="assets/images/main_course_8.jpg" alt="category_food" class="card_img" />
+                        <div class="card_container">
+                            <h4 class="article_content"><b>Rice Pudding</b></h4>
+                            <p class="article_content">Rice Pudding</p>
+                        </div>
+                    </a>
+                </div>-->
+
+
+
+            </div>
+            <%# } else { %>
+            <!--<h2 class ="item_code_not_found"> Category Not found </h2>
+                    <h4 class ="item_code_not_found">Available categories :</h4>
+                <ul>
+                    <%# for(let i=0 ;i< cat.length ; i++) { %>
+                    <li><%# cat[i]%></li>
+                    <%# } %>
+                </ul>
+                    <form>
+                        <button  type="submit" class="C_Rating" formaction="/categories">Back to Categories </button>
+                    </form>-->
+                <%# } %>
+        </div>
+    </div>
+
+</div>
+<% include partials/footer.ejs%>
+
+</body>
+</html>

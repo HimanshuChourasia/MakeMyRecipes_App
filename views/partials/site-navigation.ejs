@@ -1,0 +1,58 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+
+    $(document).ready(function() {
+
+        // Get current page URL
+        var url = window.location.href;
+
+        // remove # from URL
+        url = url.substring(0, (url.indexOf("#") == -1) ? url.length : url.indexOf("#"));
+
+        // remove parameters from URL
+        url = url.substring(0, (url.indexOf("?") == -1) ? url.length : url.indexOf("?"));
+
+        // select file name
+        url = url.substr(url.lastIndexOf("/"));
+
+
+
+        // Loop all menu items
+        $('.sidebar a').each(function(){
+
+            // select href
+            var href = $(this).attr('href');
+
+            // Check filename
+            if(url === href || url === '/item' || url === '/feedback'){
+                if(url === '/item' || url === '/feedback' ){
+                    $("a.active")[0].classList.remove("active");
+                    $('#site_nav_category').addClass('active');
+                }
+                else {
+
+
+                    // Add active class
+                    $("a.active")[0].classList.remove("active");
+                    $(this).addClass('active');
+                }
+            }
+        });
+    });
+</script>
+
+
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+<link rel="stylesheet" href="/assets/stylesheets/site-navigation.css">
+<div class="sidebar">
+    <p class="article_content"><a href="/index" class="active">Home</a></p>
+    <p class="article_content"><a id = "site_nav_category" href="/categories">Categories</a></p>
+    <p class="article_content"><a href="#" class="disabled">Store</a></p>
+    <p class="article_content"><a href="/about">About</a></p>
+    <p class="article_content"><a href="/contact">Contact Us</a></p>
+    <% if(user === undefined){ %>
+    <% }else{%>
+        <p class="article_content"><a href="/profile/signout">Sign Out</a></p>
+    <% } %>
+
+</div>

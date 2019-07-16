@@ -1,0 +1,65 @@
+* {
+    box-sizing: border-box;
+}
+ nav {
+    display: block;
+}
+
+html, body, h1, h2, h4, header, footer, nav, aside, article, section, main, p, a, ul, li {
+    padding: 0;
+    margin: 0;
+}
+
+
+
+nav {
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+}
+
+.nav_list_li {
+    background-color: #aaa;
+    border: none;
+    width: 33%;
+    height: 50px;
+    margin: 0;
+    font-size: 20px;
+    color: #fff;
+    border-bottom: solid;
+    border-top: solid;
+}
+
+.nav_list_li:hover {
+    border-bottom: none;
+    border-top: none;
+    background-color: #747272;
+    cursor: pointer;
+}
+
+.nav_list_li:active {
+    border-bottom: none;
+    border-top: none;
+    background-color: #050117;
+    cursor: pointer;
+}
+
+
+.nav_content {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.50vw;
+}
+.disabled {
+    opacity: 0.65;
+
+
+}
+.current {
+    color: black;
+}
+
+.disabled:hover {
+    background-color: #c1c1c1;
+    cursor: not-allowed;
+
+}

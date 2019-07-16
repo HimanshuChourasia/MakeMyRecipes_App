@@ -1,0 +1,127 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <title>UpdateItem</title>
+    <link href="/assets/stylesheets/updateItem.css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="/assets/stylesheets/error.css" />
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iCnt = 0;
+            $('#btAddIngredients').click(function() {
+
+                if (iCnt <= 19) {
+                    iCnt = iCnt + 1;
+                    $('#ingredients_id').append('<input type="text" placeholder="Ingredients" name="ingredients_"' + iCnt + '/>');
+                    $('#ingredients_cnt').val(iCnt);
+                }
+                else {
+                    $('#ingredients_id').append('<label>Reached the limit</label>');
+                    $('#btAddIngredients').attr('class', 'bt-disable');
+                    $('#btAddIngredients').attr('disabled', 'disabled');
+
+                }
+            });
+            var dCnt = 0;
+            $('#btAddDirections').click(function() {
+
+                if (dCnt <= 19) {
+                    dCnt = dCnt + 1;
+                    $('#directions_id').append('<input type="text" placeholder="Directions" name="directions_"' + dCnt + '/>');
+                    $('#directions_cnt').val(dCnt);
+                }
+                else {
+                    $('#directions_id').append('<label>Reached the limit</label>');
+                    $('#btAddDirections').attr('class', 'bt-disable');
+                    $('#btAddDirections').attr('disabled', 'disabled');
+
+                }
+            });
+
+        });
+    </script>
+</head>
+
+
+<body>
+<div class="container">
+    <% include partials/header.ejs%>
+    <div class="body_wrapper">
+        <% include partials/nav.ejs%>
+        <% include partials/site-navigation.ejs%>
+        <div class="main_container">
+            <%if(errorlist!== undefined){ %>
+                <h2 class="warning">One of the fields have a validation issue .Please refer to the table below</h2>
+                <div class="error_container" style="margin-left: 19%">
+                    <table id="errortable">
+                        <tr>
+                            <th>Location</th>
+                            <th>Parameter</th>
+                            <th>Parameter Value</th>
+                            <th>Error Message</th>
+                            <th>Nested Errors</th>
+                        </tr>
+                        <% for (var i = 0; i < errorlist.length ; i++) { %>
+                        <tr>
+                            <td><%=errorlist[i].location%></td>
+                            <td><%=errorlist[i].param%></td>
+                            <td><%=errorlist[i].value%></td>
+                            <td><%=errorlist[i].msg%></td>
+                            <td><%=errorlist[i].nestedErrors%></td>
+                        </tr>
+                        <% } %>
+                    </table>
+                </div>
+            <%}%>
+            <%if(onSuccessFlag === false){ %>
+                <div id="login-box">
+                    <div class="left">
+                        <h1 class="signup_heading">Update Item</h1>
+                        <form method="post" action="/profile/updateItem" id="updateItemForm" enctype="multipart/form-data">
+                            <input type="text" name="itemname" placeholder="ItemName" required />
+                            <input type="text" name="description_0"  placeholder="Description" id="description_text_box" required />
+                            <label for="CatalogCategory"></label>
+                            <select name="CatalogCategory" class="countries select_style" id="CatalogCategory" required>
+                                <option hidden disabled selected value="None"> -- select an option --</option>
+                                <option value="Appetizer">Appetizer</option>
+                                <option value="Entrée">Entrée</option>
+                            </select>
+                            <label for="rating"></label>
+                            <select name="rating" class="states select_style" id="rating" required>
+                                <option hidden disabled selected value="-1"> -- select an option --</option>
+                                <option value="1">1 Star &#9733;</option>
+                                <option value="2">2 Star &#9733;&#9733;</option>
+                                <option value="3">3 Star &#9733;&#9733;&#9733;</option>
+                                <option value="4">4 Star &#9733;&#9733;&#9733;&#9733;</option>
+                                <option value="5">5 Star &#9733;&#9733;&#9733;&#9733;&#9733;</option>
+                            </select>
+                            <div id="ingredients_id">
+                                <input type="text" name="ingredients_0" placeholder="Ingredients" id="ingredients_txt_box" required />
+                                <input type="hidden" name="ingredients_cnt"  value="1" id="ingredients_cnt" />
+                                <input type="button" name="add_ingredients" value="Add Ingredients" placeholder="Add Ingredients" id="btAddIngredients"  />
+                            </div>
+                            <div id="directions_id">
+                                <input type="text" name="directions_0" placeholder="Directions" id="directions_txt_box"  required/>
+                                <input type="hidden" name="directions_cnt"  value="1" id="directions_cnt" />
+                                <input type="button" name="add_directions" value="Add Directions" placeholder="Add Directions" id="btAddDirections"  />
+                            </div>
+                            <label for="itemimage" id="labelItemImage">Item Image</label>
+                            <input type="file" name="itemimage" id="itemimage" placeholder="Item Image" required/>
+                            <input type="hidden" name="itemcode" value="<%=itemcode%>" id="itemcode" required/>
+                            <input type="submit"  value="Update Item" />
+                        </form>
+                    </div>
+                </div>
+            <%}else {%>
+            <h2 class ="account_created">Successfully updated Item </h2><br>
+            <p class ="account_created space_bottom">You can view  the updated Item   <a href="<%='/item?Item_Code='+itemcode%>">here</a></p><br>
+            <%}%>
+        </div>
+        <% include partials/footer.ejs%>
+    </div>
+</div>
+
+</body>
+</html>

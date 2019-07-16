@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" type="image/png" href="/assets/images/favicon.png" />
+    <title>MakeYourRecipes-Home</title>
+    <link href="https://fonts.googleapis.com/css?family=Rochester" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/stylesheets/style.css">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--[if lt IE  9]>
+    <script type="text/javascript">
+        document.createElement("article");
+        document.createElement("aside");
+        document.createElement("header");
+        document.createElement("footer");
+        document.createElement("main");
+        document.createElement("nav");
+        document.createElement("section");
+    </script>
+    <![endif]-->
+</head>
+<body>
+<div class="container">
+<% include partials/header.ejs%>
+    <div class="body_wrapper">
+    <% include partials/nav.ejs%>
+<% include partials/site-navigation.ejs%>
+<div class="main_container">
+    <section>
+        <h2 class="heading_style">Recipe of the Day</h2>
+        <article class="article_content">
+            <header>
+                <h2 title="title_section" class="title_section">Cafe' Mocha</h2>
+            </header>
+            <footer>
+                <p class="post_info">This article is written by Christan</p>
+            </footer>
+            <img src="/assets/images/index_1.jpg" alt="coffee" class = "index_content_image"/>
+            <p class="article-content">    Use block Parmesan cheese and grate it freshly yourself. This will ensure that the cheese melts better. Don’t use dry grated Parmesan cheese because it will not melt. (Some grocery stores do have freshly grated Parmesan off the block in the deli section.)
+                Much like cauliflower pizza crust, make sure to squeeze all liquid out of the steamed, ground cauliflower.
+                To make cauliflower crisps the same size, I used a cookie scoop to measure the “dough.” I used #40 cookies scoop but you can choose to use a different one.
+                Once cauliflower crisps are baked, let them cool before taking them off or they might break.
+                When making the crisps, pat the “dough” down and fix the edges as you flatten it. The edges will crack as it spreads but they are easily fixed.</p>
+        </article>
+        <article class="article_content">
+            <header>
+                <h2 title="title_section" class="title_section">Frankie & Sauces</h2>
+            </header>
+            <footer>
+                <p class="post_info">This article is written by Alexandro.</p>
+            </footer>
+            <img src="/assets/images/index_2.jpg" alt="tacos" class="index_content_image" />
+            <p class="article-content">What you are looking for is fine mesh to squeeze out the liquid without squeezing part of cauliflower through the holes. There were a few times when I ran out of cheese cloth, then I used clean veggie saving bags. They are made from fine mash material and worked perfectly. So look around your kitchen, you might just have something you can use. Make sure it’s clean and it’s fine mesh material.</p>
+        </article>
+    </section>
+</div>
+</div>
+</div>
+<% include partials/footer.ejs%>
+
+</body>
+</html>

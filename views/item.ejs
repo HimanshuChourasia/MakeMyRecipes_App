@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" type="image/png" href="/assets/images/favicon.png" />
+    <title>MakeYourRecipes-Item</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Rochester" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/stylesheets/style.css">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--[if lt IE  9]>
+    <script type="text/javascript">
+        document.createElement("article");
+        document.createElement("aside");
+        document.createElement("header");
+        document.createElement("footer");
+        document.createElement("main");
+        document.createElement("nav");
+        document.createElement("section");
+    </script>
+    <![endif]-->
+</head>
+<body>
+<div class="container">
+    <% include partials/header.ejs%>
+    <div class="body_wrapper">
+        <% include partials/nav.ejs%>
+<% include partials/site-navigation.ejs%>
+        <div class="main_container">
+            <div class="nav_div">
+                <p><a href="/index" class="nav_link">Home</a> &raquo; <a href="/categories" class="nav_link">Categories</a> &raquo; <a href="<%='/item?Item_Code='+Item[0].Item_Code%>" class="nav_link">Item</a></p>
+            </div>
+            <% if (item_not_present === false) {%>
+            <div class="container_img_button">
+                <img src="<%=Item[0].ImageUrl%>" alt="Food">
+                <div class="div_heading">
+                    <h2 class="item_title"><%=Item[0].Item_Name%></h2>
+                    <h4 class="item_title"><%= Item[0].Catalog_Category %></h4>
+                    <%for( let i = 0 ;i < Item[0].Rating ;i++){ %>
+                    <span class="fa fa-star checked "></span>
+                    <% }%>
+                    <div class="item_button_div">
+                    <form id="back_to_categories">
+                        <button  type="submit" class="C_Rating" formaction="/categories">Back to Categories </button>
+                    </form>
+                        <%if(user) { %>
+                             <%if(Item[0].Owner === user.user_id){%>
+                        <form id="updateItem">
+                            <button  type="submit" name="Item_Code" value="<%=Item[0].Item_Code%>" class="C_Rating" formaction="/profile/shareItemUpdate">Update Item </button>
+                        </form>
+                        <%}%>
+                     <%}%>
+                    </div>
+                </div>
+                <div class="div_button">
+                    <%if(user){%>
+                    <form id="save_it_pos" method="post">
+                        <input type="hidden" name="itemcode" value="<%=Item[0].Item_Code%>">
+                        <input type="hidden" name="rating" value="0">
+                        <input type="hidden" name="madeit" value="false">
+                        <input type="hidden" name="category" value="<%=Item[0].Catalog_Category%>">
+                        <input type="hidden" name="itemName" value="<%=Item[0].Item_Name%>">
+                        <button type="submit"  class="item_button" formaction="/profile/myitems">&#x2764;Save It !!</button>
+                    </form>
+                    <%}else{%>
+                    <form id="save_it_pos" method="get">
+                        <button type="submit" class="item_button" formaction="/profile/signin">&#x2764;Save It !!</button>
+                    </form>
+                    <%}%>
+                    <form>
+                    <button type="submit" name="itemcode" value = "<%=Item[0].Item_Code%>"class="item_button" formaction="/profile/rate">&#9733;Rate It !!</button>
+                    </form>
+                </div>
+
+            </div>
+            <div>
+
+                <div class="div_item_intro">
+                    <p class="article_content"><%= Item[0].Description %></p>
+                </div>
+                <div class="div_item_list">
+                    <h3>Ingredients</h3>
+
+                    <ul>
+                        <% var list = Item[0].Ingredients %>
+                            <% for (var i = 0; i < list.length; i++) { %>
+                            <%if (list[i]!= undefined) {%>
+                            <li>
+                                <p class="article_content"><%= list[i]  %></p>
+                            </li>
+                        <%}%>
+                           <% } %>
+
+                        <!--<li>
+                            <p class="article_content">Spread cauliflower florets onto a baking sheet; season with salt and pepper.</p>
+                        </li>
+                        <li>
+                            <p class="article_content">Heat butter in a small skillet over medium-low heat; cook and stir pine nuts until golden brown, about 5 minutes. Add dates and garlic to pine nuts; cook until dates are softened, 2 to 3 minutes. Season with salt. .</p>
+                        </li>
+                        <li>
+                            <p class="article_content">Bake in the preheated oven for 10 minutes. Stir cauliflower and continue baking until golden brown around the edges, about 20 more minutes. .</p>
+                        </li>
+                        <l  i>
+                            <p class="article_content">Transfer hot cauliflower to a serving bowl. Drizzle pine nut mixture over cauliflower and toss to coat. Serve warm or at room temperature.</p>
+                        </li>
+                        <li>
+                            <p class="article_content">Roasted cauliflower if often my choice for a fast side dish or a quick lunch. It’s very easy to make and all I need is a head of cauliflower, olive oil, salt, pepper, and garlic powder.</p>
+                        </li>-->
+
+                    </ul>
+                </div>
+                <div class="div_directions">
+                    <h3>Directions</h3>
+                    <ol type="1">
+                        <% var dList = Item[0].Directions %>
+                        <% dList.forEach(function (i) { %>
+                            <%if (i != undefined) {%>
+                            <li>
+                                <p class="article_content"><%= i  %></p>
+                            </li>
+                            <%}%>
+                        <%});
+                        %>
+                    </ol>
+                </div>
+            </div>
+            <% } else { %>
+             <h2 class = "item_code_not_found">Item Not present</h2>
+                <form>
+                    <button  type="submit" class="C_Rating" formaction="/categories">Back to Categories </button>
+                </form>
+            <%}%>
+        </div>
+    </div>
+</div>
+<% include partials/footer.ejs%>
+
+</body>
+</html>
