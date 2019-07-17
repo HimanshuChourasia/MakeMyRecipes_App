@@ -44,7 +44,7 @@ pipeline {
   }
   stage('Building a docker-compose') {
    steps {
-    sh "docker-compose build ."
+    sh "docker-compose build"
    }
 
   }
