@@ -1,8 +1,7 @@
 version: "2"
 services:
   node-app:
-    build:
-      context: .
+    image: himanshuchourasia/makemyrecipes_1:latest
     ports:
       - 5000:5000
     container_name: MakeMyRecipesApp
@@ -15,9 +14,6 @@ services:
     restart: always
     networks:
       - makemyrecipes_nw
-    environment:
-      - MONGO_DATA_DIR = /data/db
-      - MONGO_LOG_DIR = /data/log
     volumes:
       - mongo-data-volume:/data/db
       - mongo-data-log:/data/log
