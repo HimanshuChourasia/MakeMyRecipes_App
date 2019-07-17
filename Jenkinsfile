@@ -7,6 +7,7 @@ pipeline {
         dockerImageRegistry = "${registry}:${env.BUILD_ID}"
     }
     agent any
+    tools {nodejs "NODE_JS" }
     stages {
     	stage('Build') {
             steps {
