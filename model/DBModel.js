@@ -7,7 +7,10 @@
 const mongoose = require('mongoose');
 const schema = mongoose.Schema ;
 
-const server = '127.0.0.1:27017'; // REPLACE WITH YOUR DB SERVER
+/*const server = '127.0.0.1:27017'; // REPLACE WITH YOUR DB SERVER
+const database = 'Recipes';      // REPLACE WITH YOUR DB NAME
+*/
+const server = 'db'; // REPLACE WITH YOUR DB SERVER
 const database = 'Recipes';      // REPLACE WITH YOUR DB NAME
 /**
  * Database.

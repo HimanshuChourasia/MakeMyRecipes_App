@@ -13,5 +13,5 @@ app.use('/assets',express.static('assets'));
 app.use(session({secret:'1234',resave:false,saveUninitialized:false}));
 app.use('/profile',profileRoutes);
 app.use('/',routes);
-app.listen(8080);
-
+app.listen(8000);
+module.exports = app ;

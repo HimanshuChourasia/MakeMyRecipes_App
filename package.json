@@ -17,10 +17,13 @@
     "uuid": "^3.3.2"
   },
   "devDependencies": {
-    "jsdoc": "~3.5.5"
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "jsdoc": "~3.5.5",
+    "should": "^13.2.3"
   },
   "scripts": {
-    "test": "node app"
+    "test": "mocha --reporter spec --exit"
   },
   "keywords": [
     "App"
