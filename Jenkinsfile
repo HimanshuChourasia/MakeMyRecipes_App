@@ -1,7 +1,7 @@
 pipeline {
     environment {
         registryUrl = 'https://index.docker.io/v1'
-        registryCredentials = credentials('dockerhub')
+        registryCredentials = 'dockerhub'
         registry = 'himanshuchourasia/makemyrecipes_1'
         dockerImage = ''
         dockerImageRegistry = "${registry}:${env.BUILD_ID}"
@@ -31,7 +31,7 @@ pipeline {
            stage('pushing to a Registry'){
                steps{
                    script{
-                       docker.withRegistry(registryUrl,registryCredentials)
+                       docker.withRegistry('',registryCredentials)
                        dockerImage.push()
                     
                    }  
