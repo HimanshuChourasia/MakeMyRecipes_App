@@ -3,7 +3,7 @@ services:
   node-app:
     image: himanshuchourasia/makemyrecipes_1:latest
     ports:
-      - 5000:5000
+      - 8000:8000
     container_name: MakeMyRecipesApp
     networks:
       - makemyrecipes_nw
@@ -11,6 +11,7 @@ services:
       - db
   db:
     image: mongo
+    container_name: MakeMyRecipesdb
     restart: always
     networks:
       - makemyrecipes_nw
