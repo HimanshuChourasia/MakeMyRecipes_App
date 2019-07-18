@@ -53,10 +53,21 @@ pipeline {
    steps {
     sh "docker-compose up -d"
    }
-
-
-  }
-
+ }
+timeout(time: 15, unit: 'SECONDS') {
+        stage('Check Availability') {
+          steps {             
+              waitUntil {
+                  try {         
+                      sh "curl -s --head  --request GET  http://node-app/ | grep '200'"
+                      return true
+                  } catch (Exception e) {
+                        return false
+                  }
+              }
+			}
+		}
+	}
 
 
 
