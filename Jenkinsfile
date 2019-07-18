@@ -5,7 +5,7 @@ pipeline {
   registry = 'himanshuchourasia/makemyrecipes_1'
   dockerImage = ''
   dockerImageRegistry = "${registry}:${env.BUILD_ID}"
-  shell_cmd = "curl -sI -X HEAD http://localhost:8000/ | head -n 1 | grep 200 | grep -q '200' && echo 'matched'"
+  shell_cmd = "curl -sI -X HEAD http://localhost:8000/hdghd | head -n 1 | grep 200 | grep -q '200' && echo 'matched'"
  }
  agent any
  tools {
