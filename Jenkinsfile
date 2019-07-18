@@ -5,7 +5,7 @@ pipeline {
   registry = 'himanshuchourasia/makemyrecipes_1'
   dockerImage = ''
   dockerImageRegistry = "${registry}:${env.BUILD_ID}"
-  shell_cmd = "curl -sI -X HEAD http://localhost:80/ | head -n 1 | grep 200 | grep -q '200' && echo 'matched'"
+  shell_cmd = "curl -sI -X HEAD http://localhost:8000/ | head -n 1 | grep 200 | grep -q '200' && echo 'matched'"
  }
  agent any
  tools {
@@ -71,7 +71,7 @@ pipeline {
        sh "echo 'not matched'"
         currentBuild.result = 'FAILURE'
       }
-      echo "RESULT: ${currentBuild.result}"
+      
 
 
 
@@ -87,4 +87,36 @@ pipeline {
 
   }
  }
+ post {
+     always {
+         
+        echo "Task completed with result ${currentBuild.result}"
+        deleteDir()
+     }
+     success{
+         echo "Cleaning up the containers"
+         sh "docker-compose down --rmi all --volumes"
+         
+     }
+     unstable{
+         echo "Build unstable performing clean up"
+         sh "docker-compose down --rmi all --volumes"
+     }
+     failure{
+         echo "Build failed performing clean up"
+         sh "docker-compose down --rmi all --volumes"
+         
+     }
+     changed{
+         
+         echo "Changes successfully executed"
+         sh "docker-compose down --rmi all --volumes"
+     }
+
 }
+
+
+     
+ }
+
+ 
