@@ -62,6 +62,7 @@ pipeline {
               script {
                   try {         
                      new URL("$appuri").getText()
+                     sh 'echo "Success"'
                       return true
                   } catch (Exception e) {
                         return false
