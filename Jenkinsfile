@@ -60,7 +60,7 @@ pipeline {
     script {
      node {
       try {
-      	sh "docker container exec -it MakeMyRecipesApp bash"  
+      	sh "docker container exec -i MakeMyRecipesApp "  
       	sh "curl -sI -X HEAD http://localhost:8000/ | head -n 1 | grep 200 | grep -q '200' && echo 'matched'"
            
       	
