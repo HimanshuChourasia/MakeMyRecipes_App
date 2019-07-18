@@ -5,7 +5,7 @@ pipeline {
   registry = 'himanshuchourasia/makemyrecipes_1'
   dockerImage = ''
   dockerImageRegistry = "${registry}:${env.BUILD_ID}"
-  appuri = 'http://node-app/'
+  shell_cmd = "curl -sI -X HEAD http://localhost:8000/ | head -n 1 | grep 200 | grep -q '200' && echo 'matched'"
  }
  agent any
  tools {
@@ -60,8 +60,8 @@ pipeline {
     script {
      node {
       try {
-      	sh "docker container exec -i MakeMyRecipesApp "  
-      	sh "curl -sI -X HEAD http://localhost:8000/ | head -n 1 | grep 200 | grep -q '200' && echo 'matched'"
+      	sh "docker container exec -i MakeMyRecipesApp sh -c ${shell_cmd}" 
+      	
            
       	
 
