@@ -61,7 +61,7 @@ pipeline {
      node {
       try {
       	sh "docker container exec -i MakeMyRecipesApp sh -c \"${shell_cmd}\"" 
-      	
+      	currentBuild.result = 'SUCCESS'
            
       	
 
@@ -69,8 +69,9 @@ pipeline {
 
       } catch (Exception e) {
        sh "echo 'not matched'"
-       return false
+        currentBuild.result = 'FAILURE'
       }
+      echo "RESULT: ${currentBuild.result}"
 
 
 
