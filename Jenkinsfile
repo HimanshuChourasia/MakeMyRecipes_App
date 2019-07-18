@@ -91,26 +91,28 @@ pipeline {
      always {
          
         echo "Task completed with result ${currentBuild.result}"
-        deleteDir()
+        
      }
      success{
          echo "Cleaning up the containers"
          sh "docker-compose down --rmi all --volumes"
-         
+         deleteDir()
      }
      unstable{
          echo "Build unstable performing clean up"
          sh "docker-compose down --rmi all --volumes"
+         deleteDir()
      }
      failure{
          echo "Build failed performing clean up"
          sh "docker-compose down --rmi all --volumes"
-         
+         deleteDir()
      }
      changed{
          
          echo "Changes successfully executed"
          sh "docker-compose down --rmi all --volumes"
+         deleteDir()
      }
 
 }
