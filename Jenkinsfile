@@ -111,8 +111,7 @@ pipeline {
      changed{
          
          echo "Changes successfully executed"
-         sh "docker-compose down --rmi all --volumes"
-         deleteDir()
+         
      }
 
 }
