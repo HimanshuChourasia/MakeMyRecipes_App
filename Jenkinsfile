@@ -60,7 +60,7 @@ pipeline {
     script {
      node {
       try {
-      	sh "docker container exec -i MakeMyRecipesApp sh -c ${shell_cmd}" 
+      	sh "docker container exec -i MakeMyRecipesApp sh -c \"${shell_cmd}\"" 
       	
            
       	
