@@ -55,23 +55,27 @@ pipeline {
     sh "docker-compose up -d"
    }
  }
-
-        stage('Check Availability') {
+ stage('Check Availability') {
           steps {
-                       
-              script {
-                  try {         
-                     new URL("$appuri").getText()
-                     sh 'echo "Success"'
-                      return true
-                  } catch (Exception e) {
-                        return false
-                  }
-              }
-                  
-              
-			
-		}
+    		script{
+    		    node{
+    		        try {
+    		            sh "curl -sI -X HEAD http://localhost:8000/ | head -n 1 | grep 200 | grep -q '200' && echo 'matched'"
+    						return true 
+    		            
+    		        }
+    		        catch(Exception e){
+    		            sh "echo 'not matched'"
+    		            return false
+    		        }
+
+
+    		        
+    		    }
+
+    		    
+    		}
+
 	}
 
 
