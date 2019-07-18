@@ -54,32 +54,32 @@ pipeline {
    steps {
     sh "docker-compose up -d"
    }
- }
- stage('Check Availability') {
-          steps {
-    		script{
-    		    node{
-    		        try {
-    		            sh "curl -sI -X HEAD http://localhost:8000/ | head -n 1 | grep 200 | grep -q '200' && echo 'matched'"
-    						return true 
-    		            
-    		        }
-    		        catch(Exception e){
-    		            sh "echo 'not matched'"
-    		            return false
-    		        }
+  }
+  stage('Check Availability') {
+   steps {
+    script {
+     node {
+      try {
+       sh "curl -sI -X HEAD http://localhost:8000/ | head -n 1 | grep 200 | grep -q '200' && echo 'matched'"
+       return true
 
-
-    		        
-    		    }
-
-    		    
-    		}
-
-	}
+      } catch (Exception e) {
+       sh "echo 'not matched'"
+       return false
+      }
 
 
 
+     }
 
+
+    }
+
+   }
+
+
+
+
+  }
  }
 }
