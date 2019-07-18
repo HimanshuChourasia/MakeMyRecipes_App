@@ -5,6 +5,7 @@ pipeline {
   registry = 'himanshuchourasia/makemyrecipes_1'
   dockerImage = ''
   dockerImageRegistry = "${registry}:${env.BUILD_ID}"
+  appuri = 'http://node-app/'
  }
  agent any
  tools {
@@ -57,16 +58,18 @@ pipeline {
 
         stage('Check Availability') {
           steps {
-          timeout(time: 15, unit: 'SECONDS') {             
-              waitUntil {
+                       
+              script {
                   try {         
-                      sh "curl -s --head  --request GET  node-app/ | grep '200'"
+                     new URL("$appuri").getText()
                       return true
                   } catch (Exception e) {
                         return false
                   }
               }
-			}
+                  
+              
+			
 		}
 	}
 
