@@ -12,11 +12,27 @@ pipeline {
   nodejs "NODE_JS"
  }
  stages {
-  stage('Build') {
+    stage('Build') {
    steps {
     sh "npm install"
    }
   }
+  stage('perform sonarqube analysis'){
+	 steps{
+		script{
+  	    def sonarqubeScannerHome = tool name: 'sonar', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
+  	    withCredentials([string(credentialsId: 'sonartoken', variable: 'sonarLogin')]){
+  	    	sh "${sonarqubeScannerHome}/bin/sonar-scanner -e -Dsonar.login=${sonarLogin}"                                                         
+  	    }
+
+  	    
+  	}
+		     
+	 }
+
+  	
+  }
+  
   stage('Test') {
    steps {
     sh "npm test"

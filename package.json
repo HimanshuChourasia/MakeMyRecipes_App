@@ -20,10 +20,11 @@
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
     "jsdoc": "~3.5.5",
-    "should": "^13.2.3"
+    "should": "^13.2.3",
+    "sonarqube-scanner": "^2.5.0"
   },
   "scripts": {
-    "test": "mocha --reporter spec --exit"
+	"test": "mocha --reporter spec --exit"
   },
   "keywords": [
     "App"
