@@ -94,8 +94,7 @@ pipeline {
         
      }
      success{
-         echo "Cleaning up the containers"
-         sh "docker-compose down --rmi all --volumes"
+         echo "Success"
          deleteDir()
      }
      unstable{
